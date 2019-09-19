@@ -15,27 +15,27 @@ controls = new THREE.OrbitControls(camera, renderer.domElement);
 var geometry = new THREE.BoxGeometry(50, 50, 50);
 var cubeSides = [
   new THREE.MeshBasicMaterial({
-    map: new THREE.TextureLoader().load("../images/po_ft.png"),
+    map: new THREE.TextureLoader().load("../images/iceflow_ft.png"),
     side: THREE.DoubleSide
   }),
   new THREE.MeshBasicMaterial({
-    map: new THREE.TextureLoader().load("../images/po_bk.png"),
+    map: new THREE.TextureLoader().load("../images/iceflow_bk.png"),
     side: THREE.DoubleSide
   }),
   new THREE.MeshBasicMaterial({
-    map: new THREE.TextureLoader().load("../images/po_up.png"),
+    map: new THREE.TextureLoader().load("../images/iceflow_up.png"),
     side: THREE.DoubleSide
   }),
   new THREE.MeshBasicMaterial({
-    map: new THREE.TextureLoader().load("../images/po_dn.png"),
+    map: new THREE.TextureLoader().load("../images/iceflow_dn.png"),
     side: THREE.DoubleSide
   }),
   new THREE.MeshBasicMaterial({
-    map: new THREE.TextureLoader().load("../images/po_rt.png"),
+    map: new THREE.TextureLoader().load("../images/iceflow_rt.png"),
     side: THREE.DoubleSide
   }),
   new THREE.MeshBasicMaterial({
-    map: new THREE.TextureLoader().load("../images/po_lf.png"),
+    map: new THREE.TextureLoader().load("../images/iceflow_lf.png"),
     side: THREE.DoubleSide
   })
 ];
@@ -99,25 +99,42 @@ var camera2 = new THREE.PerspectiveCamera(
 // });
 // scene.add(mtlLoader);
 
-var light2 = new THREE.PointLight(0xff0000, 1);
-scene.add(light2);
-var geometry2 = new THREE.BoxGeometry(1, 1, 1);
-geometry2.verticesNeedUpdate = true;
-geometry2.elementsNeedUpdate = true;
-geometry2.morphTargetsNeedUpdate = true;
-geometry2.uvsNeedUpdate = true;
-geometry2.normalsNeedUpdate = true;
-geometry2.colorsNeedUpdate = true;
-geometry2.tangentsNeedUpdate = true;
+// var light2 = new THREE.PointLight(0xff0000, 1);
+// scene.add(light2);
+// var geometry2 = new THREE.BoxGeometry(1, 1, 1);
+// geometry2.verticesNeedUpdate = true;
+// geometry2.elementsNeedUpdate = true;
+// geometry2.morphTargetsNeedUpdate = true;
+// geometry2.uvsNeedUpdate = true;
+// geometry2.normalsNeedUpdate = true;
+// geometry2.colorsNeedUpdate = true;
+// geometry2.tangentsNeedUpdate = true;
 
-var material2 = new THREE.MeshBasicMaterial({ color: 0x060f3a });
+// var material2 = new THREE.MeshBasicMaterial({ color: 0x060f3a });
 
-var cube2 = new THREE.Mesh(geometry2, material2);
-scene.add(cube2);
+// var cube2 = new THREE.Mesh(geometry2, material2);
+// scene.add(cube2);
 
 // var jwel = new THREE.
 
-camera2.position.z = 3;
+camera2.position.z = 30;
+
+var directionalLight = new THREE.DirectionalLight(0xffffff, 100);
+directionalLight.position.set(0, 1, 0);
+directionalLight.castShadow = true;
+scene.add(directionalLight);
+
+var light3 = new THREE.PointLight(0xffffff, 10);
+scene.add(light3);
+
+var model = new THREE.GLTFLoader();
+model.load("../assets/scene.gltf", function(gltf) {
+  jwel = gltf.scene.children[0];
+  jwel.position.y -= 0.3;
+  jwel.scale.set(0.3, 0.3, 0.3);
+  scene.add(gltf.scene);
+  render();
+});
 
 //=======================
 

@@ -1,0 +1,35 @@
+body {
+  height: 100vh;
+  margin: 0;
+}
+canvas {
+  display: block;
+}
+.controls {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  position: fixed;
+  z-index: 1;
+  right: 15px;
+  top: 15px;
+  text-align: right;
+}
+button {
+  color: #ff214f;
+  background-color: #fff;
+  border: 1px solid #fff;
+  border-radius: 0;
+  padding: 8px 25px;
+  margin: 3px;
+  min-width: 200px;
+  cursor: pointer;
+  outline: none;
+  transition-duration: 0.3s;
+}
+button:hover {
+  color: #fff;
+  background-color: #ff214f;
+  border-color: #ff214f;
+  transition-duration: 0.3s;
+}
